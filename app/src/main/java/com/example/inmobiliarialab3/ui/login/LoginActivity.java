@@ -41,8 +41,9 @@ public class LoginActivity extends AppCompatActivity {
         mv.getmLogin().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                //mv.obtenerPerfil();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         });
@@ -65,6 +66,15 @@ public class LoginActivity extends AppCompatActivity {
                 mv.login(usuario, contrasenia);
             }
         });
-
+        mv.getmYaLogueado().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+        mv.verificarLogueado();
     }
 }

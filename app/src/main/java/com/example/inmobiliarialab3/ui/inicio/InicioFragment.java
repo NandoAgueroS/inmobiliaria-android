@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.inmobiliarialab3.R;
 import com.example.inmobiliarialab3.databinding.FragmentInicioBinding;
 import com.example.inmobiliarialab3.model.Propietario;
+import com.google.android.gms.maps.SupportMapFragment;
 
 public class InicioFragment extends Fragment {
 
@@ -42,6 +43,15 @@ public class InicioFragment extends Fragment {
         });
 
         inicioViewModel.obtenerPerfil();
+        inicioViewModel.getMMapa().observe(getViewLifecycleOwner(), new Observer<InicioViewModel.MapaActual>() {
+            @Override
+            public void onChanged(InicioViewModel.MapaActual mapaActual) {
+                SupportMapFragment mapFragment =
+                        (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+                mapFragment.getMapAsync(mapaActual);
+
+            }
+        });
         return root;
     }
 

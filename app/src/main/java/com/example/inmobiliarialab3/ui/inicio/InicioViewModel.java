@@ -12,6 +12,13 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.inmobiliarialab3.model.Propietario;
 import com.example.inmobiliarialab3.request.ApiClient;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,6 +27,7 @@ import retrofit2.Response;
 public class InicioViewModel extends AndroidViewModel {
 
     private MutableLiveData<Propietario> mPropietario = new MutableLiveData<>();
+    private MutableLiveData<MapaActual> mMapa = new MutableLiveData<>();
 
     public InicioViewModel(@NonNull Application application) {
         super(application);
@@ -27,6 +35,9 @@ public class InicioViewModel extends AndroidViewModel {
 
     public LiveData<Propietario> getMPropietario(){
         return mPropietario;
+    }
+    public LiveData<MapaActual> getMMapa(){
+        return mMapa;
     }
 
     public void obtenerPerfil(){
@@ -49,5 +60,31 @@ public class InicioViewModel extends AndroidViewModel {
                 Toast.makeText(getApplication(), "Error al recuperar el perfil", Toast.LENGTH_LONG).show();
             }
         });
+        mMapa.postValue(new MapaActual());
     }
-}
+        public class MapaActual implements OnMapReadyCallback {
+
+            LatLng inmobiliaria= new LatLng(-33.15021468171232, -66.30479988251177);
+
+            @Override
+            public void onMapReady(@NonNull GoogleMap googleMap) {//cuando el mapa esté cargado y se esté renderizando
+                MarkerOptions macadorInmobiliaria = new MarkerOptions();
+                macadorInmobiliaria.position(inmobiliaria);
+                macadorInmobiliaria.title("Inmobiliaria");
+
+                googleMap.addMarker(macadorInmobiliaria);
+                googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                CameraPosition cameraPosition = new CameraPosition
+                        .Builder()
+                        .target(inmobiliaria)
+                        .zoom(20)
+                        .bearing(45)
+                        .tilt(15)
+                        .build();
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+
+                googleMap.animateCamera(cameraUpdate);
+            }
+        }
+
+    }

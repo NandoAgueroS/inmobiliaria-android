@@ -24,6 +24,7 @@ public class LoginActivityViewModel extends AndroidViewModel {
 
     private MutableLiveData<String> mLogin = new MutableLiveData<>();
     private MutableLiveData<String> mMensaje= new MutableLiveData<>();
+    private MutableLiveData<Boolean> mYaLogueado = new MutableLiveData<>();
 
     public LoginActivityViewModel(@NonNull Application application) {
         super(application);
@@ -35,6 +36,10 @@ public class LoginActivityViewModel extends AndroidViewModel {
 
     public LiveData<String> getmMensaje() {
         return mMensaje;
+    }
+
+    public LiveData<Boolean> getmYaLogueado(){
+        return mYaLogueado;
     }
 
     public void login(String usuario, String contrasenia){
@@ -87,4 +92,10 @@ public class LoginActivityViewModel extends AndroidViewModel {
         return true;
     }
 
+    public void verificarLogueado(){
+        String token = ApiClient.leerToken(getApplication());
+        if(token != null && !token.isBlank()){
+            mYaLogueado.setValue(true);
+        }
+    }
 }

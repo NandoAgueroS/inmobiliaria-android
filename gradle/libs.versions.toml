@@ -16,6 +16,9 @@ legacySupportV4 = "1.0.0"
 converterGson = "3.0.0"
 retrofit = "3.0.0"
 androidSpinkitVersion = "1.4."
+playServicesMaps = "19.2.0"
+glide = "4.16.0"
+recyclerview = "1.4.0"
 
 [libraries]
 android-spinkit = { module = "com.github.ybq:Android-SpinKit", version.ref = "androidSpinkit" }
@@ -34,6 +37,9 @@ legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", ver
 converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "converterGson" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 ybq-android-spinkit = { group = "com.github.ybq", name = "Android-SpinKit", version.ref = "androidSpinkitVersion" }
+play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

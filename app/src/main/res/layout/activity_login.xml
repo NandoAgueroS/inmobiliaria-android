@@ -31,7 +31,7 @@
         android:background="#467F03"
         android:ems="10"
         android:hint="Contraseña"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
