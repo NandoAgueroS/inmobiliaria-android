@@ -1,5 +1,6 @@
 package com.example.inmobiliarialab3.ui.inquilinos;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -7,6 +8,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,11 @@ import android.view.ViewGroup;
 import com.example.inmobiliarialab3.R;
 import com.example.inmobiliarialab3.databinding.FragmentInmueblesBinding;
 import com.example.inmobiliarialab3.databinding.FragmentInquilinosBinding;
+import com.example.inmobiliarialab3.model.Inmueble;
+import com.example.inmobiliarialab3.ui.inmuebles.InmuebleAdapter;
+import com.example.inmobiliarialab3.ui.inmuebles.InmueblesViewModel;
+
+import java.util.List;
 
 public class InquilinosFragment extends Fragment {
 
@@ -28,9 +36,21 @@ public class InquilinosFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
+        mViewModel= new ViewModelProvider(this).get(InquilinosViewModel.class);
         binding = FragmentInquilinosBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        mViewModel.getmInmuebles().observe(getViewLifecycleOwner(), new Observer<List<Inmueble>>() {
+            @Override
+            public void onChanged(List<Inmueble> inmuebles) {
+                InquilinoAdapter adapter = new InquilinoAdapter(inmuebles, getContext());
+                GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+                RecyclerView recyclerView = binding.rvInquilinos;
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(layoutManager);            }
+        });
+        mViewModel.cargarInmuebles();
         return root;
     }
 

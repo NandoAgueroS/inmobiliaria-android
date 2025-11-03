@@ -16,4 +16,5 @@
     <string name="menu_contratos">Contratos</string>
     <string name="menu_logout">Logout</string>
     <string name="menu_inquilinos">Inquilinos</string>
+    <string name="cargar_inmueble">Cargar inmueble</string>
 </resources>

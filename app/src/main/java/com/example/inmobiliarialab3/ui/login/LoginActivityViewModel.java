@@ -2,6 +2,7 @@ package com.example.inmobiliarialab3.ui.login;
 
 import android.app.Application;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -63,6 +64,7 @@ public class LoginActivityViewModel extends AndroidViewModel {
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
                     mMensaje.postValue("Logueo incorrecto");
+                    Log.d("API Failure", t.getMessage());
                 }
             });
         }

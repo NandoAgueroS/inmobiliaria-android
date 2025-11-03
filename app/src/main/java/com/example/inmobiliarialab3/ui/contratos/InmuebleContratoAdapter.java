@@ -1,4 +1,4 @@
-package com.example.inmobiliarialab3.ui.inmuebles;
+package com.example.inmobiliarialab3.ui.contratos;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,12 +22,12 @@ import com.example.inmobiliarialab3.request.ApiClient;
 
 import java.util.List;
 
-public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.InmuebleViewHolder> {
+public class InmuebleContratoAdapter extends RecyclerView.Adapter<InmuebleContratoAdapter.InmuebleViewHolder> {
 
     private List<Inmueble> lista;
     private Context context;
 
-    public InmuebleAdapter(List<Inmueble> lista, Context context) {
+    public InmuebleContratoAdapter(List<Inmueble> lista, Context context) {
         this.lista = lista;
         this.context = context;
     }
@@ -34,7 +35,7 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.Inmueb
     @NonNull
     @Override
     public InmuebleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_inmuebles_inquilinos, parent, false);
         return new InmuebleViewHolder(view);
     }
 
@@ -43,18 +44,17 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.Inmueb
 
         Inmueble inmueble = lista.get(position);
         holder.tvDireccion.setText(inmueble.getDireccion());
-        holder.tvPrecio.setText(String.valueOf(inmueble.getValor()));
         Glide.with(context)
                 .load(ApiClient.URL_BASE + inmueble.getImagen())
                 .placeholder(R.drawable.ic_login)
                 .error(R.drawable.ic_login)
                 .into(holder.ivImagen);
-        holder.item.setOnClickListener(new View.OnClickListener() {
+        holder.btVer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("inmueble", inmueble);
-                Navigation.findNavController((Activity) v.getContext(), R.id.nav_host_fragment_content_main).navigate(R.id.detalle_inmueble_fragment, bundle);
+                bundle.putInt("idInmueble", inmueble.getIdInmueble());
+                Navigation.findNavController((Activity) v.getContext(), R.id.nav_host_fragment_content_main).navigate(R.id.detalle_contrato_fragment, bundle);
             }
         });
     }
@@ -65,16 +65,15 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.Inmueb
     }
 
     public class InmuebleViewHolder extends RecyclerView.ViewHolder{
-        TextView tvDireccion, tvPrecio;
+        TextView tvDireccion;
         ImageView ivImagen;
-        CardView item;
+        Button btVer;
 
         public InmuebleViewHolder(@NonNull View itemView) {
             super(itemView);
             tvDireccion = itemView.findViewById(R.id.tvInquilinosDireccion);
-            tvPrecio= itemView.findViewById(R.id.tvPrecio);
             ivImagen= itemView.findViewById(R.id.ivInquilinosImagen);
-            item = itemView.findViewById(R.id.itemCardView);
+            btVer = itemView.findViewById(R.id.btVerInquilino);
         }
     }
 }

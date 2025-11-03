@@ -10,9 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.inmobiliarialab3.R;
 import com.example.inmobiliarialab3.databinding.FragmentInmueblesBinding;
 import com.example.inmobiliarialab3.model.Inmueble;
 
@@ -40,6 +42,12 @@ public class InmueblesFragment extends Fragment {
             }
         });
         inmueblesViewModel.cargarInmuebles();
+        binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_main).navigate(R.id.cargar_inmueble_fragment);
+            }
+        });
 
         return root;
     }
