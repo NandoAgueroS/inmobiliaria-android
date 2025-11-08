@@ -1,5 +1,6 @@
 package com.example.inmobiliarialab3.ui.perfil;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
+import com.example.inmobiliarialab3.R;
 import com.example.inmobiliarialab3.databinding.FragmentPerfilBinding;
 import com.example.inmobiliarialab3.model.Propietario;
+import com.example.inmobiliarialab3.ui.login.LoginActivity;
 
 public class PerfilFragment extends Fragment {
 
@@ -27,6 +31,16 @@ public class PerfilFragment extends Fragment {
 
         binding = FragmentPerfilBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        perfilViewModel.getmSesionInvalida().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
 
         perfilViewModel.getMPropietario().observe(getViewLifecycleOwner(), new Observer<Propietario>() {
             @Override
@@ -72,6 +86,13 @@ public class PerfilFragment extends Fragment {
                 String telefono = binding.etTelefono.getText().toString();
                 String btTexto = binding.btEditar.getText().toString();
                 perfilViewModel.guardar(btTexto, nombre, apellido, dni, email, telefono);
+            }
+        });
+
+        binding.btPerfilCambiarContrasenia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_main).navigate(R.id.cambiar_contrasenia_fragment);
             }
         });
 

@@ -28,6 +28,7 @@ public class InicioViewModel extends AndroidViewModel {
 
     private MutableLiveData<Propietario> mPropietario = new MutableLiveData<>();
     private MutableLiveData<MapaActual> mMapa = new MutableLiveData<>();
+    private MutableLiveData<Boolean> mSesionInvalida = new MutableLiveData<>();
 
     public InicioViewModel(@NonNull Application application) {
         super(application);
@@ -40,17 +41,24 @@ public class InicioViewModel extends AndroidViewModel {
         return mMapa;
     }
 
+    public LiveData<Boolean> getmSesionInvalida() {
+        return mSesionInvalida;
+    }
+
     public void obtenerPerfil(){
         ApiClient.InmobiliariaService inmobiliariaService = ApiClient.getInmobiliariaService();
 
-        Call<Propietario> tokenCall = inmobiliariaService.getPerfil("Bearer " + ApiClient.leerToken(getApplication()));
+        Call<Propietario> tokenCall = inmobiliariaService.getPerfil(ApiClient.leerToken(getApplication()));
         tokenCall.enqueue(new Callback<Propietario>() {
             @Override
             public void onResponse(Call<Propietario> call, Response<Propietario> response) {
                 if (response.isSuccessful()){
                     Propietario propietario = response.body();
                     mPropietario.postValue(propietario);
-                }else{
+                }else if (response.code() == 401){
+                    sesionInvalida();
+                }
+                else{
                     Toast.makeText(getApplication(), "Error al recuperar el perfil", Toast.LENGTH_LONG).show();
                 }
             }
@@ -61,6 +69,11 @@ public class InicioViewModel extends AndroidViewModel {
             }
         });
         mMapa.postValue(new MapaActual());
+    }
+
+    public void sesionInvalida(){
+        mSesionInvalida.postValue(true);
+        ApiClient.eliminarToken(getApplication());
     }
         public class MapaActual implements OnMapReadyCallback {
 

@@ -23,6 +23,7 @@ import retrofit2.Response;
 public class PagosViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<Pago>> mPagos = new MutableLiveData<>();
+    private MutableLiveData<Boolean> mSesionInvalida = new MutableLiveData<>();
 
     public PagosViewModel(@NonNull Application application) {
         super(application);
@@ -32,12 +33,21 @@ public class PagosViewModel extends AndroidViewModel {
         return mPagos;
     }
 
+    public LiveData<Boolean> getmSesionInvalida() {
+        return mSesionInvalida;
+    }
+
+    public void sesionInvalida(){
+        mSesionInvalida.postValue(true);
+        ApiClient.eliminarToken(getApplication());
+    }
+
     public void cargarPagos(Bundle bundle){
         int idContrato = bundle.getInt("idContrato");
 
         if (idContrato == 0) return;
 
-        String token = "Bearer " + ApiClient.leerToken(getApplication());
+        String token = ApiClient.leerToken(getApplication());
         ApiClient.InmobiliariaService inmobiliariaService = ApiClient.getInmobiliariaService();
 
         Call<List<Pago>> pagoCall = inmobiliariaService.getPagos(token, idContrato);
@@ -45,8 +55,10 @@ public class PagosViewModel extends AndroidViewModel {
         pagoCall.enqueue(new Callback<List<Pago>>() {
             @Override
             public void onResponse(Call<List<Pago>> call, Response<List<Pago>> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     mPagos.postValue(response.body());
+                }else if (response.code() == 401){
+                    sesionInvalida();
                 }else{
                     Toast.makeText(getApplication(), "Error al cargar los pagos", Toast.LENGTH_LONG).show();
                 }

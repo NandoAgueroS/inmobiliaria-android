@@ -3,6 +3,7 @@ package com.example.inmobiliarialab3.ui.contratos;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,10 @@ import com.example.inmobiliarialab3.R;
 import com.example.inmobiliarialab3.databinding.FragmentContratosBinding;
 import com.example.inmobiliarialab3.databinding.FragmentDetalleContratoBinding;
 import com.example.inmobiliarialab3.model.Contrato;
+import com.example.inmobiliarialab3.ui.login.LoginActivity;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class DetalleContratoFragment extends Fragment {
 
@@ -33,11 +38,28 @@ private FragmentDetalleContratoBinding binding;
         mViewModel = new ViewModelProvider(this).get(DetalleContratoViewModel.class);
         binding = FragmentDetalleContratoBinding.inflate(inflater, container, false);
 
+        mViewModel.getmSesionInvalida().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+
         mViewModel.getmContrato().observe(getViewLifecycleOwner(), new Observer<Contrato>() {
             @Override
             public void onChanged(Contrato contrato) {
-                binding.tvContratoFechaInicio.setText(contrato.getFechaInicio());
-                binding.tvContratoFechaFin.setText(contrato.getFechaFinalizacion());
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter formatterLocal = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate fechaInicio = LocalDate.parse(contrato.getFechaInicio(), formatter);
+                LocalDate fechaFin= LocalDate.parse(contrato.getFechaFinalizacion(), formatter);
+                String fechaInicioString = fechaInicio.format(formatterLocal);
+                String fechaFinString = fechaFin.format(formatterLocal);
+
+                binding.tvContratoFechaInicio.setText(fechaInicioString);
+                binding.tvContratoFechaFin.setText(fechaFinString);
                 binding.tvContratoMonto.setText(contrato.getMontoAlquiler() + "");
                 binding.tvContratoInquilino.setText(contrato.getInquilino().getNombre() + " " + contrato.getInquilino().getApellido());
                 binding.tvContratoInmueble.setText(contrato.getInmueble().getDireccion());

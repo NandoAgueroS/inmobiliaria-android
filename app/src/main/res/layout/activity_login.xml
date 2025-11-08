@@ -5,14 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00965A"
+    android:background="#6EAF94"
     tools:context=".ui.login.LoginActivity">
 
     <EditText
         android:id="@+id/etUsuario"
         android:layout_width="wrap_content"
         android:layout_height="52dp"
-        android:background="#467F03"
+        android:background="@drawable/fondo"
         android:ems="10"
         android:hint="Usuario"
         android:inputType="text"
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="52dp"
         android:layout_marginTop="4dp"
-        android:background="#467F03"
+        android:background="@drawable/fondo"
         android:ems="10"
         android:hint="Contraseña"
         android:inputType="textPassword"

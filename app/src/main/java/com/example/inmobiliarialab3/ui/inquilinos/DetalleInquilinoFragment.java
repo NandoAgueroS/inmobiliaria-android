@@ -3,6 +3,7 @@ package com.example.inmobiliarialab3.ui.inquilinos;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import com.example.inmobiliarialab3.R;
 import com.example.inmobiliarialab3.databinding.FragmentDetalleInquilinoBinding;
 import com.example.inmobiliarialab3.model.Inquilino;
+import com.example.inmobiliarialab3.ui.login.LoginActivity;
 
 public class DetalleInquilinoFragment extends Fragment {
 
@@ -32,7 +34,17 @@ public class DetalleInquilinoFragment extends Fragment {
          binding =  FragmentDetalleInquilinoBinding.inflate(inflater, container, false);
          mViewModel = new ViewModelProvider(this).get(DetalleInquilinoViewModel.class);
 
-         mViewModel.getmInquilino().observe(getViewLifecycleOwner(), new Observer<Inquilino>() {
+        mViewModel.getmSesionInvalida().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+
+        mViewModel.getmInquilino().observe(getViewLifecycleOwner(), new Observer<Inquilino>() {
              @Override
              public void onChanged(Inquilino inquilino) {
                  binding.tvInquilinoNombre.setText(inquilino.getNombre());

@@ -20,6 +20,8 @@ import com.example.inmobiliarialab3.model.Inmueble;
 import com.example.inmobiliarialab3.model.Pago;
 import com.example.inmobiliarialab3.request.ApiClient;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class PagosAdapter extends RecyclerView.Adapter<PagosAdapter.PagoViewHolder> {
@@ -42,10 +44,13 @@ public class PagosAdapter extends RecyclerView.Adapter<PagosAdapter.PagoViewHold
     @Override
     public void onBindViewHolder(@NonNull PagoViewHolder holder, int position) {
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatterLocal = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Pago pago= lista.get(position);
+        LocalDate fechaLocalDate = LocalDate.parse(pago.getFechaPago(), formatter);
         holder.tvCodigo.setText(String.valueOf(pago.getIdPago()));
         holder.tvDetalle.setText(pago.getDetalle());
-        holder.tvFecha.setText(pago.getFechaPago());
+        holder.tvFecha.setText(fechaLocalDate.format(formatterLocal));
         holder.tvImporte.setText(String.valueOf(pago.getMonto()));
         holder.tvContrato.setText(String.valueOf(pago.getIdContrato()));
     }

@@ -4,28 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemCardView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="#00FFFFFF">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="@drawable/fondo">
 
         <TextView
             android:id="@+id/tvInquilinosDireccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="20dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivInquilinosImagen" />
 
         <ImageView
             android:id="@+id/ivInquilinosImagen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="92dp"
+            android:layout_width="218dp"
+            android:layout_height="181dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"

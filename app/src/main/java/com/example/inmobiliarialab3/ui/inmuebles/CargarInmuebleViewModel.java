@@ -36,6 +36,7 @@ public class CargarInmuebleViewModel extends AndroidViewModel {
     private MutableLiveData<Uri> mUri = new MutableLiveData<>();
     private MutableLiveData<Boolean> mGuardado = new MutableLiveData<>();
     private MutableLiveData<String> mMensaje= new MutableLiveData<>();
+    private MutableLiveData<Boolean> mSesionInvalida = new MutableLiveData<>();
 
     public CargarInmuebleViewModel(@NonNull Application application) {
         super(application);
@@ -44,6 +45,15 @@ public class CargarInmuebleViewModel extends AndroidViewModel {
     public LiveData<Uri> getmUri(){return mUri;}
     public LiveData<Boolean> getmGuardado(){return mGuardado;}
     public LiveData<String> getmMensaje(){return mMensaje;}
+
+    public LiveData<Boolean> getmSesionInvalida() {
+        return mSesionInvalida;
+    }
+
+    public void sesionInvalida(){
+        mSesionInvalida.postValue(true);
+        ApiClient.eliminarToken(getApplication());
+    }
 
     public void recibirFoto(ActivityResult result){
         if (result.getResultCode() == RESULT_OK){
@@ -95,13 +105,15 @@ public class CargarInmuebleViewModel extends AndroidViewModel {
 
             ApiClient.InmobiliariaService inmobiliariaService= ApiClient.getInmobiliariaService();
             String token = ApiClient.leerToken(getApplication());
-            Call<Inmueble> call = inmobiliariaService.cargarInmueble("Bearer "+ token, imagenPart, inmuebleBody);
+            Call<Inmueble> call = inmobiliariaService.cargarInmueble(token, imagenPart, inmuebleBody);
             call.enqueue(new Callback<Inmueble>() {
                 @Override
                 public void onResponse(Call<Inmueble> call, Response<Inmueble> response) {
-                    if(response.isSuccessful()){
+                    if(response.isSuccessful()) {
                         Toast.makeText(getApplication(), "Inmueble cargado exitosamente", Toast.LENGTH_SHORT).show();
                         mGuardado.postValue(true);
+                    }else if (response.code() ==401){
+                            sesionInvalida();
                     }else{
                         mMensaje.postValue("Error al cargar inmueble");
                     }

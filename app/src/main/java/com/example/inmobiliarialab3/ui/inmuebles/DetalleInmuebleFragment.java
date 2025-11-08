@@ -2,6 +2,8 @@ package com.example.inmobiliarialab3.ui.inmuebles;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +17,7 @@ import com.example.inmobiliarialab3.R;
 import com.example.inmobiliarialab3.databinding.FragmentDetalleInmuebleBinding;
 import com.example.inmobiliarialab3.model.Inmueble;
 import com.example.inmobiliarialab3.request.ApiClient;
+import com.example.inmobiliarialab3.ui.login.LoginActivity;
 
 public class DetalleInmuebleFragment extends Fragment {
 
@@ -30,6 +33,16 @@ public class DetalleInmuebleFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentDetalleInmuebleBinding.inflate(inflater, container, false);
         mViewModel = new ViewModelProvider(this).get(DetalleInmuebleViewModel.class);
+
+        mViewModel.getmSesionInvalida().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
 
         mViewModel.getmInmueble().observe(getViewLifecycleOwner(), new Observer<Inmueble>() {
             @Override

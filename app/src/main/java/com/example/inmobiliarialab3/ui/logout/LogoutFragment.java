@@ -42,6 +42,16 @@ public class LogoutFragment extends Fragment {
 
         View root = binding.getRoot();
 
+        logoutViewModel.getmSesionInvalida().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+
         new AlertDialog.Builder(requireContext())
                 .setTitle("Salir")
                 .setMessage("¿Seguro que quiere salir?")

@@ -1,5 +1,6 @@
 package com.example.inmobiliarialab3.ui.inicio;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.inmobiliarialab3.R;
 import com.example.inmobiliarialab3.databinding.FragmentInicioBinding;
 import com.example.inmobiliarialab3.model.Propietario;
+import com.example.inmobiliarialab3.ui.login.LoginActivity;
 import com.google.android.gms.maps.SupportMapFragment;
 
 public class InicioFragment extends Fragment {
@@ -27,6 +29,15 @@ public class InicioFragment extends Fragment {
 
         binding = FragmentInicioBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        inicioViewModel.getmSesionInvalida().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
 
         inicioViewModel.getMPropietario().observe(getViewLifecycleOwner(), new Observer<Propietario>() {
             @Override

@@ -1,6 +1,7 @@
 package com.example.inmobiliarialab3.ui.perfil;
 
 import android.app.Application;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ public class PerfilViewModel extends AndroidViewModel {
     private MutableLiveData<Boolean> bmEstado= new MutableLiveData<>();
     private MutableLiveData<String> bmTexto= new MutableLiveData<>();
     private MutableLiveData<String> mMensaje= new MutableLiveData<>();
+    private MutableLiveData<Boolean> mSesionInvalida = new MutableLiveData<>();
 
     public PerfilViewModel(@NonNull Application application) {
         super(application);
@@ -43,20 +45,34 @@ public class PerfilViewModel extends AndroidViewModel {
         return mMensaje;
     }
 
+    public LiveData<Boolean> getmSesionInvalida() {
+        return mSesionInvalida;
+    }
+
+    public void sesionInvalida(){
+        mSesionInvalida.postValue(true);
+        ApiClient.eliminarToken(getApplication());
+    }
+
     public void mostrarPerfil(){
         ApiClient.InmobiliariaService inmobiliariaService = ApiClient.getInmobiliariaService();
-        Call<Propietario> getPerfilCall = inmobiliariaService.getPerfil("Bearer " + ApiClient.leerToken(getApplication()));
+        Call<Propietario> getPerfilCall = inmobiliariaService.getPerfil(ApiClient.leerToken(getApplication()));
         getPerfilCall.enqueue(new Callback<Propietario>() {
             @Override
             public void onResponse(Call<Propietario> call, Response<Propietario> response) {
                 if (response.isSuccessful()){
                     mPropietario.setValue(response.body());
-                }
+            }else if (response.code() == 401){
+                sesionInvalida();
+            }else{
+                Toast.makeText(getApplication(), "Error al obtener el perfil", Toast.LENGTH_LONG).show();
+            }
             }
 
             @Override
             public void onFailure(Call<Propietario> call, Throwable t) {
-
+                Log.d("API_ERROR", t.getMessage());
+                Toast.makeText(getApplication(), "Error en el servidor", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -70,16 +86,18 @@ public class PerfilViewModel extends AndroidViewModel {
             Propietario propietarioActualizado = validarPropietario(nombre, apellido, dni, email, telefono);
 
             if (propietarioActualizado != null){
-                String token = "Bearer " + ApiClient.leerToken(getApplication());
+                String token = ApiClient.leerToken(getApplication());
 
                 Call<Propietario> propietarioCall = ApiClient.getInmobiliariaService().actualizarPropietario(token, propietarioActualizado);
                 propietarioCall.enqueue(new Callback<Propietario>() {
                     @Override
                     public void onResponse(Call<Propietario> call, Response<Propietario> response) {
-                        if (response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             Toast.makeText(getApplication(), "Actualizado correctamente", Toast.LENGTH_LONG).show();
                             bmTexto.setValue("Editar");
                             bmEstado.setValue(false);
+                        }else if (response.code() == 401){
+                            sesionInvalida();
                         }else{
                             Toast.makeText(getApplication(), "Error al actualizar", Toast.LENGTH_LONG).show();
                         }
@@ -87,6 +105,7 @@ public class PerfilViewModel extends AndroidViewModel {
 
                     @Override
                     public void onFailure(Call<Propietario> call, Throwable t) {
+                        Log.d("API_ERROR", t.getMessage());
                         Toast.makeText(getApplication(), "Error en el servidor", Toast.LENGTH_LONG).show();
                     }
                 });

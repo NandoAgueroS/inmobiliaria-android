@@ -83,10 +83,10 @@
         android:text="Editar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintStart_toEndOf="@+id/btPerfilCambiarContrasenia"
         app:layout_constraintTop_toBottomOf="@+id/tvPerfilError"
-        app:layout_constraintVertical_bias="0.187" />
+        app:layout_constraintVertical_bias="0.189" />
 
     <TextView
         android:id="@+id/tvPerfilError"
@@ -99,4 +99,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etTelefono" />
+
+    <Button
+        android:id="@+id/btPerfilCambiarContrasenia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:text="Cambiar contraseña"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPerfilError"
+        app:layout_constraintVertical_bias="0.189" />
 </androidx.constraintlayout.widget.ConstraintLayout>

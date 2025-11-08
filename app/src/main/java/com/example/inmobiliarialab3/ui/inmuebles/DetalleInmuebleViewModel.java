@@ -19,6 +19,7 @@ import retrofit2.Response;
 
 public class DetalleInmuebleViewModel extends AndroidViewModel {
     private MutableLiveData<Inmueble> mInmueble = new MutableLiveData<>();
+    private MutableLiveData<Boolean> mSesionInvalida = new MutableLiveData<>();
 
     public DetalleInmuebleViewModel(@NonNull Application application) {
         super(application);
@@ -26,6 +27,15 @@ public class DetalleInmuebleViewModel extends AndroidViewModel {
 
     public LiveData<Inmueble> getmInmueble() {
         return mInmueble;
+    }
+
+    public LiveData<Boolean> getmSesionInvalida() {
+        return mSesionInvalida;
+    }
+
+    public void sesionInvalida(){
+        mSesionInvalida.postValue(true);
+        ApiClient.eliminarToken(getApplication());
     }
 
     public void mostrarInmueble(Bundle bundle){
@@ -40,7 +50,7 @@ public class DetalleInmuebleViewModel extends AndroidViewModel {
         inmuebleActualizado.setDisponible(estado);
         inmuebleActualizado.setIdInmueble(mInmueble.getValue().getIdInmueble());
 
-        String token = "Bearer " + ApiClient.leerToken(getApplication());
+        String token = ApiClient.leerToken(getApplication());
         ApiClient.InmobiliariaService inmobiliariaService = ApiClient.getInmobiliariaService();
 
         Call<Inmueble> inmuebleCall = inmobiliariaService.actualizarInmueble(token, inmuebleActualizado);
@@ -48,8 +58,10 @@ public class DetalleInmuebleViewModel extends AndroidViewModel {
         inmuebleCall.enqueue(new Callback<Inmueble>() {
             @Override
             public void onResponse(Call<Inmueble> call, Response<Inmueble> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Toast.makeText(getApplication(), "Inmueble actualizado", Toast.LENGTH_LONG).show();
+                }else if(response.code() == 401) {
+                    sesionInvalida();
                 }else{
                     Toast.makeText(getApplication(), "Error al actualizar", Toast.LENGTH_LONG).show();
                 }

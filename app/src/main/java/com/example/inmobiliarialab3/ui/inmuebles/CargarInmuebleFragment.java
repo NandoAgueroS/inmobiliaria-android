@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 
 import com.example.inmobiliarialab3.R;
 import com.example.inmobiliarialab3.databinding.FragmentCargarInmuebleBinding;
+import com.example.inmobiliarialab3.ui.login.LoginActivity;
 
 public class CargarInmuebleFragment extends Fragment {
 
@@ -40,6 +41,16 @@ public class CargarInmuebleFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentCargarInmuebleBinding.inflate(inflater, container, false);
         mViewModel = new ViewModelProvider(this).get(CargarInmuebleViewModel.class);
+
+        mViewModel.getmSesionInvalida().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
 
         abrirGaleria();
         binding.btnCargarImagen.setOnClickListener(new View.OnClickListener() {

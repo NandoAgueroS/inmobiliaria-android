@@ -15,7 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#68B16C"
+            android:background="#7BB298"
             app:popupTheme="@style/Theme.InmobiliariaLab3.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>

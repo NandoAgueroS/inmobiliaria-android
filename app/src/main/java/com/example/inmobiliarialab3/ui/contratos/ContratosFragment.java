@@ -3,6 +3,7 @@ package com.example.inmobiliarialab3.ui.contratos;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.example.inmobiliarialab3.databinding.FragmentContratosBinding;
 import com.example.inmobiliarialab3.model.Inmueble;
 import com.example.inmobiliarialab3.ui.inmuebles.InmuebleAdapter;
 import com.example.inmobiliarialab3.ui.inquilinos.InquilinosViewModel;
+import com.example.inmobiliarialab3.ui.login.LoginActivity;
 
 import java.util.List;
 
@@ -38,6 +40,16 @@ public class ContratosFragment extends Fragment {
         mViewModel= new ViewModelProvider(this).get(ContratosViewModel.class);
         binding = FragmentContratosBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        mViewModel.getmSesionInvalida().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+
         mViewModel.getmInmuebles().observe(getViewLifecycleOwner(), new Observer<List<Inmueble>>() {
             @Override
             public void onChanged(List<Inmueble> inmuebles) {

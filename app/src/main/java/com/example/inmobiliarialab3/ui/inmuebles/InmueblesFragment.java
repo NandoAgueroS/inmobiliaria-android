@@ -1,5 +1,6 @@
 package com.example.inmobiliarialab3.ui.inmuebles;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.inmobiliarialab3.R;
 import com.example.inmobiliarialab3.databinding.FragmentInmueblesBinding;
 import com.example.inmobiliarialab3.model.Inmueble;
+import com.example.inmobiliarialab3.ui.login.LoginActivity;
 
 import java.util.List;
 
@@ -30,6 +32,16 @@ public class InmueblesFragment extends Fragment {
         inmueblesViewModel = new ViewModelProvider(this).get(InmueblesViewModel.class);
         binding = FragmentInmueblesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        inmueblesViewModel.getmSesionInvalida().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
 
         inmueblesViewModel.getmInmuebles().observe(getViewLifecycleOwner(), new Observer<List<Inmueble>>() {
             @Override

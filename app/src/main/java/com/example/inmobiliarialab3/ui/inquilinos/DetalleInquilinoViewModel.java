@@ -21,6 +21,7 @@ import retrofit2.Response;
 public class DetalleInquilinoViewModel extends AndroidViewModel {
 
     private MutableLiveData<Inquilino> mInquilino = new MutableLiveData<>();
+    private MutableLiveData<Boolean> mSesionInvalida = new MutableLiveData<>();
 
     public DetalleInquilinoViewModel(@NonNull Application application) {
         super(application);
@@ -31,13 +32,22 @@ public class DetalleInquilinoViewModel extends AndroidViewModel {
         return mInquilino;
     }
 
+    public LiveData<Boolean> getmSesionInvalida() {
+        return mSesionInvalida;
+    }
+
+    public void sesionInvalida(){
+        mSesionInvalida.postValue(true);
+        ApiClient.eliminarToken(getApplication());
+    }
+
     public void mostrarInquilino(Bundle bundle){
         int idInmueble = bundle.getInt("idInmueble");
         if (idInmueble == 0){
             return;
         }
 
-        String token = "Bearer " + ApiClient.leerToken(getApplication());
+        String token = ApiClient.leerToken(getApplication());
         ApiClient.InmobiliariaService inmobiliariaService = ApiClient.getInmobiliariaService();
 
         Call<Contrato> contratoCall = inmobiliariaService.getContratoVigente(token, idInmueble);
@@ -45,8 +55,10 @@ public class DetalleInquilinoViewModel extends AndroidViewModel {
         contratoCall.enqueue(new Callback<Contrato>() {
             @Override
             public void onResponse(Call<Contrato> call, Response<Contrato> response) {
-                if (response.isSuccessful() && response.body().getInquilino() != null){
+                if (response.isSuccessful() && response.body().getInquilino() != null) {
                     mInquilino.postValue(response.body().getInquilino());
+                }else if (response.code() == 401){
+                    sesionInvalida();
                 }else{
                     Toast.makeText(getApplication(), "Error al recuperar el inquilino", Toast.LENGTH_LONG).show();
                 }

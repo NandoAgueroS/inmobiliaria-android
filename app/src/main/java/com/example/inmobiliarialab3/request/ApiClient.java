@@ -49,8 +49,14 @@ public class ApiClient {
         SharedPreferences sp = context.getSharedPreferences("preferencias.xml", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
 
-        editor.putString("token",token);
+        editor.putString("token","Bearer " + token);
         editor.apply();
+    }
+    public static void eliminarToken(Context context){
+        SharedPreferences sp = context.getSharedPreferences("preferencias.xml", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor= sp.edit();
+        editor.remove("token");
+        editor.commit();
     }
 
     public static String leerToken(Context context){
@@ -64,8 +70,8 @@ public class ApiClient {
         Call<String> login(@Field("Usuario") String usuario, @Field("Clave") String clave);
 
         @FormUrlEncoded
-        @PUT("api/Propietarios/changePassowrd")
-        Call<String> changePassword(@Field("currentPassword") String currentPassword, @Field("newPassword") String newPassword);
+        @PUT("api/Propietarios/changePassword")
+        Call<Void> changePassword(@Header("Authorization") String token, @Field("currentPassword") String currentPassword, @Field("newPassword") String newPassword);
 
         @GET("api/Propietarios")
         Call<Propietario> getPerfil(@Header("Authorization") String token);

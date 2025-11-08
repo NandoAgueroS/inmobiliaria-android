@@ -22,6 +22,7 @@ import retrofit2.Response;
 public class InquilinosViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<Inmueble>> mInmuebles = new MutableLiveData<>();
+    private MutableLiveData<Boolean> mSesionInvalida = new MutableLiveData<>();
 
     public InquilinosViewModel(@NonNull Application application) {
         super(application);
@@ -31,16 +32,27 @@ public class InquilinosViewModel extends AndroidViewModel {
         return mInmuebles;
     }
 
+    public LiveData<Boolean> getmSesionInvalida() {
+        return mSesionInvalida;
+    }
+
+    public void sesionInvalida(){
+        mSesionInvalida.postValue(true);
+        ApiClient.eliminarToken(getApplication());
+    }
+
     public void cargarInmuebles(){
-        String bearerToken = "Bearer " + ApiClient.leerToken(getApplication());
+        String bearerToken = ApiClient.leerToken(getApplication());
         ApiClient.InmobiliariaService inmobiliariaService = ApiClient.getInmobiliariaService();
         Call<List<Inmueble>> inmueblesCall = inmobiliariaService.getInmueblesContratoVigente(bearerToken);
 
         inmueblesCall.enqueue(new Callback<List<Inmueble>>() {
             @Override
             public void onResponse(Call<List<Inmueble>> call, Response<List<Inmueble>> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     mInmuebles.postValue(response.body());
+                }else if (response.code() == 401){
+                    sesionInvalida();
                 }else{
                     Toast.makeText(getApplication(), "Error al cargar los inmuebles", Toast.LENGTH_LONG).show();
                 }
