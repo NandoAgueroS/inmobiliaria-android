@@ -65,7 +65,7 @@
     <fragment
         android:id="@+id/detalle_inmueble_fragment"
         android:name="com.example.inmobiliarialab3.ui.inmuebles.DetalleInmuebleFragment"
-        android:label="Detalle inmueble"
+        android:label="@string/detalle_del_inmueble"
         tools:layout="@layout/fragment_detalle_inmueble" >
         <action
             android:id="@+id/action_detalle_inmueble_fragment_to_nav_inmuebles2"
@@ -83,7 +83,7 @@
     <fragment
         android:id="@+id/detalle_inquilino_fragment"
         android:name="com.example.inmobiliarialab3.ui.inquilinos.DetalleInquilinoFragment"
-        android:label="fragment_detalle_inquilino"
+        android:label="@string/detalle_del_inquilino"
         tools:layout="@layout/fragment_detalle_inquilino" >
         <action
             android:id="@+id/action_detalleInquilinoFragment2_to_nav_inquilinos2"
@@ -92,7 +92,7 @@
     <fragment
         android:id="@+id/detalle_contrato_fragment"
         android:name="com.example.inmobiliarialab3.ui.contratos.DetalleContratoFragment"
-        android:label="fragment_detalle_contrato"
+        android:label="@string/detalle_del_contrato"
         tools:layout="@layout/fragment_detalle_contrato" >
         <action
             android:id="@+id/action_detalleContratoFragment_to_nav_contratos"
@@ -104,7 +104,7 @@
     <fragment
         android:id="@+id/pagos_fragment"
         android:name="com.example.inmobiliarialab3.ui.contratos.PagosFragment"
-        android:label="fragment_pagos"
+        android:label="@string/pagos"
         tools:layout="@layout/fragment_pagos" >
         <action
             android:id="@+id/action_pagosFragment_to_detalle_contrato_fragment2"
@@ -113,7 +113,7 @@
     <fragment
         android:id="@+id/cambiar_contrasenia_fragment"
         android:name="com.example.inmobiliarialab3.ui.perfil.CambiarContraseniaFragment"
-        android:label="fragment_cambiar_contrasenia"
+        android:label="@string/cambiar_contrase_a"
         tools:layout="@layout/fragment_cambiar_contrasenia" >
         <action
             android:id="@+id/action_cambiarContraseniaFragment2_to_nav_perfil"

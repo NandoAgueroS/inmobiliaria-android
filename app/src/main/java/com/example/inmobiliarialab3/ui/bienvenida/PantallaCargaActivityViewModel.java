@@ -19,6 +19,7 @@ import retrofit2.Response;
 public class PantallaCargaActivityViewModel extends AndroidViewModel {
     private MutableLiveData<Boolean> mYaLogueado = new MutableLiveData<>();
     private MutableLiveData<Boolean> mSesionInvalida= new MutableLiveData<>();
+    private MutableLiveData<Boolean> mSinToken= new MutableLiveData<>();
     public PantallaCargaActivityViewModel(@NonNull Application application) {
         super(application);
     }
@@ -29,6 +30,9 @@ public class PantallaCargaActivityViewModel extends AndroidViewModel {
 
     public LiveData<Boolean> getmSesionInvalida() {
         return mSesionInvalida;
+    }
+    public LiveData<Boolean> getmSinToken() {
+        return mSinToken;
     }
 
     public void sesionInvalida(){
@@ -60,6 +64,6 @@ public class PantallaCargaActivityViewModel extends AndroidViewModel {
                 }
             });
         }else{
-            mSesionInvalida.setValue(true);
+            mSinToken.setValue(true);
         }
 }}

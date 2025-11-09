@@ -20,15 +20,18 @@ import retrofit2.Response;
 
 public class DetalleContratoViewModel extends AndroidViewModel {
     private MutableLiveData<Contrato> mContrato = new MutableLiveData<>();
+    private MutableLiveData<Integer> mIdContrato= new MutableLiveData<>();
     private MutableLiveData<Boolean> mSesionInvalida = new MutableLiveData<>();
 
     public DetalleContratoViewModel(@NonNull Application application) {
         super(application);
     }
-    // TODO: Implement the ViewModel
 
     public LiveData<Contrato> getmContrato(){
         return mContrato;
+    }
+    public LiveData<Integer> getmIdContrato(){
+        return mIdContrato;
     }
 
     public LiveData<Boolean> getmSesionInvalida() {
@@ -68,5 +71,14 @@ public class DetalleContratoViewModel extends AndroidViewModel {
                 Toast.makeText(getApplication(), "Error en el servidor", Toast.LENGTH_LONG).show();
             }
         });
+    }
+    public void traerIdContrato(){
+        if (mContrato.getValue() != null){
+            mIdContrato.setValue(mContrato.getValue().getIdContrato());
+        }
+    }
+    public void limpiarMutableIdContrato(){
+        mIdContrato = new MutableLiveData<>();
+        //mIdContrato.setValue(null);
     }
 }

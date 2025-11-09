@@ -1,5 +1,7 @@
 package com.example.inmobiliarialab3.ui.perfil;
 
+import static androidx.constraintlayout.widget.ConstraintSet.VISIBLE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -38,6 +40,7 @@ public class PerfilFragment extends Fragment {
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("desde_sesion_expirada", true);
                 startActivity(intent);
             }
         });
@@ -60,6 +63,13 @@ public class PerfilFragment extends Fragment {
                 binding.etNombre.setEnabled(aBoolean);
                 binding.etApellido.setEnabled(aBoolean);
                 binding.etDni.setEnabled(aBoolean);
+            }
+        });
+        perfilViewModel.getmEditadoExitosamente().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean isBoolean) {
+                binding.tvPerfilError.setText("");
+                binding.tvPerfilEditado.setVisibility(VISIBLE);
             }
         });
         perfilViewModel.getBmTexto().observe(getViewLifecycleOwner(), new Observer<String>() {

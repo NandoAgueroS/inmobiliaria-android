@@ -48,11 +48,9 @@ public class PagosAdapter extends RecyclerView.Adapter<PagosAdapter.PagoViewHold
         DateTimeFormatter formatterLocal = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Pago pago= lista.get(position);
         LocalDate fechaLocalDate = LocalDate.parse(pago.getFechaPago(), formatter);
-        holder.tvCodigo.setText(String.valueOf(pago.getIdPago()));
         holder.tvDetalle.setText(pago.getDetalle());
         holder.tvFecha.setText(fechaLocalDate.format(formatterLocal));
         holder.tvImporte.setText(String.valueOf(pago.getMonto()));
-        holder.tvContrato.setText(String.valueOf(pago.getIdContrato()));
     }
 
     @Override
@@ -61,15 +59,13 @@ public class PagosAdapter extends RecyclerView.Adapter<PagosAdapter.PagoViewHold
     }
 
     public class PagoViewHolder extends RecyclerView.ViewHolder{
-        TextView tvCodigo, tvImporte, tvDetalle, tvFecha, tvContrato;
+        TextView tvImporte, tvDetalle, tvFecha, tvContrato;
 
         public PagoViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvCodigo = itemView.findViewById(R.id.tvPagoCodigo);
             tvImporte = itemView.findViewById(R.id.tvPagoImporte);
             tvDetalle = itemView.findViewById(R.id.tvPagoDetalle);
             tvFecha = itemView.findViewById(R.id.tvPagoFecha);
-            tvContrato = itemView.findViewById(R.id.tvPagoContrato);
         }
     }
 }

@@ -40,6 +40,7 @@ public class DetalleInmuebleFragment extends Fragment {
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("desde_sesion_expirada", true);
                 startActivity(intent);
             }
         });
@@ -47,7 +48,6 @@ public class DetalleInmuebleFragment extends Fragment {
         mViewModel.getmInmueble().observe(getViewLifecycleOwner(), new Observer<Inmueble>() {
             @Override
             public void onChanged(Inmueble inmueble) {
-                binding.tvIdInmueble.setText(String.valueOf(inmueble.getIdInmueble()));
                 binding.tvAmbientesI.setText(String.valueOf(inmueble.getAmbientes()));
                 binding.tvDireccionI.setText(inmueble.getDireccion());
                 binding.tvUsoI.setText(inmueble.getUso());

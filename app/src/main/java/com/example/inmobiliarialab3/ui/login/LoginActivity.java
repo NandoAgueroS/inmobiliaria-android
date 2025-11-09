@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         mv.getmLogin().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
+                mv.guardarEmail(binding.etUsuario.getText().toString());
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -66,5 +67,20 @@ public class LoginActivity extends AppCompatActivity {
                 mv.login(usuario, contrasenia);
             }
         });
+        mv.getmEmailGuardado().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                binding.etUsuario.setText(s);
+            }
+        });
+        mv.getmSesionInvalida().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                binding.tvError.setText("Su sesión expiró, ingrese nuevamente");
+            }
+        });
+        mv.verificarSesionExpirada(getIntent());
+        mv.recuperarEmail();
+        mv.activarLecturas();
     }
 }

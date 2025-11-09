@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">InmobiliariaLab3</string>
+    <string name="app_name">Inmobiliaria Kiwi</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Desconocido</string>
@@ -17,4 +17,9 @@
     <string name="menu_logout">Logout</string>
     <string name="menu_inquilinos">Inquilinos</string>
     <string name="cargar_inmueble">Cargar inmueble</string>
+    <string name="detalle_del_contrato">Detalle del contrato</string>
+    <string name="detalle_del_inquilino">Detalle del inquilino</string>
+    <string name="pagos">Pagos</string>
+    <string name="cambiar_contrase_a">Cambiar contraseña</string>
+    <string name="detalle_del_inmueble">Detalle del inmueble</string>
 </resources>

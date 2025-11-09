@@ -23,6 +23,7 @@ public class PerfilViewModel extends AndroidViewModel {
     private MutableLiveData<Boolean> bmEstado= new MutableLiveData<>();
     private MutableLiveData<String> bmTexto= new MutableLiveData<>();
     private MutableLiveData<String> mMensaje= new MutableLiveData<>();
+    private MutableLiveData<Boolean> mEditadoExitosamente = new MutableLiveData<>();
     private MutableLiveData<Boolean> mSesionInvalida = new MutableLiveData<>();
 
     public PerfilViewModel(@NonNull Application application) {
@@ -43,6 +44,10 @@ public class PerfilViewModel extends AndroidViewModel {
 
     public LiveData<String> getmMensaje() {
         return mMensaje;
+    }
+
+    public LiveData<Boolean> getmEditadoExitosamente() {
+        return mEditadoExitosamente;
     }
 
     public LiveData<Boolean> getmSesionInvalida() {
@@ -93,6 +98,7 @@ public class PerfilViewModel extends AndroidViewModel {
                     @Override
                     public void onResponse(Call<Propietario> call, Response<Propietario> response) {
                         if (response.isSuccessful()) {
+                            mEditadoExitosamente.setValue(true);
                             Toast.makeText(getApplication(), "Actualizado correctamente", Toast.LENGTH_LONG).show();
                             bmTexto.setValue("Editar");
                             bmEstado.setValue(false);

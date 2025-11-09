@@ -44,6 +44,7 @@ private FragmentDetalleContratoBinding binding;
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("desde_sesion_expirada", true);
                 startActivity(intent);
             }
         });
@@ -63,18 +64,23 @@ private FragmentDetalleContratoBinding binding;
                 binding.tvContratoMonto.setText(contrato.getMontoAlquiler() + "");
                 binding.tvContratoInquilino.setText(contrato.getInquilino().getNombre() + " " + contrato.getInquilino().getApellido());
                 binding.tvContratoInmueble.setText(contrato.getInmueble().getDireccion());
-                binding.tvContratoCodigo.setText(contrato.getIdContrato() + "");
+                binding.btContratoPagos.setEnabled(true);
             }
         });
         mViewModel.mostrarContrato(getArguments());
 
+        mViewModel.getmIdContrato().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("idContrato", integer);
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_main).navigate(R.id.pagos_fragment, bundle);
+            }
+        });
         binding.btContratoPagos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int idContrato = Integer.parseInt(binding.tvContratoCodigo.getText().toString());
-                Bundle bundle = new Bundle();
-                bundle.putInt("idContrato", idContrato);
-                Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_main).navigate(R.id.pagos_fragment, bundle);
+                mViewModel.traerIdContrato();
             }
         });
 
@@ -87,4 +93,9 @@ private FragmentDetalleContratoBinding binding;
         // TODO: Use the ViewModel
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        mViewModel.limpiarMutableIdContrato();
+    }
 }

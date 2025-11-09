@@ -5,66 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.inmuebles.DetalleInmuebleFragment">
-    <TextView
-        android:id="@+id/tvInfoCodigo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="ID: "
-
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tvIdInmueble"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvIdInmueble"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="12345"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvInfoCodigo"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvInfoDireccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Direccion: "
+        android:layout_marginTop="44dp"
+        android:text="Direccion "
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tvDireccionI"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvInfoCodigo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvDireccionI"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_text"
+        android:backgroundTint="#3E000000"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvInfoDireccion"
-        app:layout_constraintTop_toBottomOf="@+id/tvIdInmueble" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvInfoDireccion" />
 
     <TextView
         android:id="@+id/tvInfoUso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Uso: "
+        android:layout_marginTop="12dp"
+        android:text="Uso"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tvUsoI"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDireccionI" />
 
@@ -72,23 +53,28 @@
         android:id="@+id/tvUsoI"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_text"
+        android:backgroundTint="#3E000000"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvInfoUso"
-        app:layout_constraintTop_toBottomOf="@+id/tvDireccionI" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvInfoUso" />
 
     <TextView
         android:id="@+id/tvInfoAmbientesI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Ambientes: "
+        android:layout_marginTop="16dp"
+        android:text="Ambientes"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tvAmbientesI"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUsoI" />
 
@@ -96,23 +82,28 @@
         android:id="@+id/tvAmbientesI"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_text"
+        android:backgroundTint="#3E000000"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvInfoAmbientesI"
-        app:layout_constraintTop_toBottomOf="@+id/tvUsoI" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvInfoAmbientesI" />
 
     <TextView
         android:id="@+id/tvInfoLatitud"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Latitud: "
+        android:layout_marginTop="12dp"
+        android:text="Latitud"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tvLatitudI"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAmbientesI" />
 
@@ -120,23 +111,28 @@
         android:id="@+id/tvLatitudI"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_text"
+        android:backgroundTint="#3E000000"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvInfoLatitud"
-        app:layout_constraintTop_toBottomOf="@+id/tvAmbientesI" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvInfoLatitud" />
 
     <TextView
         android:id="@+id/tvInfoLongitud"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Longitud: "
+        android:layout_marginTop="12dp"
+        android:text="Longitud"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tvLongitudI"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLatitudI" />
 
@@ -144,23 +140,28 @@
         android:id="@+id/tvLongitudI"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_text"
+        android:backgroundTint="#3E000000"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvInfoLongitud"
-        app:layout_constraintTop_toBottomOf="@+id/tvLatitudI" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvInfoLongitud" />
 
     <TextView
         android:id="@+id/tvInfoValor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Valor: $"
+        android:layout_marginTop="16dp"
+        android:text="Valor $"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tvValorI"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLongitudI" />
 
@@ -168,12 +169,16 @@
         android:id="@+id/tvValorI"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_text"
+        android:backgroundTint="#3E000000"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvInfoValor"
-        app:layout_constraintTop_toBottomOf="@+id/tvLongitudI" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvInfoValor" />
 
     <CheckBox
         android:id="@+id/checkDisponible"
