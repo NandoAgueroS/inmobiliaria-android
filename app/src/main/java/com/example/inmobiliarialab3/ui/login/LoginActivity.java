@@ -1,6 +1,9 @@
 package com.example.inmobiliarialab3.ui.login;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -37,6 +40,8 @@ public class LoginActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        pedirPermisos();
 
         mv.getmLogin().observe(this, new Observer<String>() {
             @Override
@@ -82,5 +87,19 @@ public class LoginActivity extends AppCompatActivity {
         mv.verificarSesionExpirada(getIntent());
         mv.recuperarEmail();
         mv.activarLecturas();
+    }
+
+    public void pedirPermisos(){
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.M
+                && checkSelfPermission(Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.CALL_PHONE},1000);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mv.desactivarLecturas();
     }
 }

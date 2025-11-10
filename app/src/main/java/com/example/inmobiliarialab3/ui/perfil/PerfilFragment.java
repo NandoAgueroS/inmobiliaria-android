@@ -1,8 +1,10 @@
 package com.example.inmobiliarialab3.ui.perfil;
 
+import static android.view.View.INVISIBLE;
 import static androidx.constraintlayout.widget.ConstraintSet.VISIBLE;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,16 +55,25 @@ public class PerfilFragment extends Fragment {
                 binding.etEmail.setText(propietario.getEmail());
                 binding.etNombre.setText(propietario.getNombre());
                 binding.etTelefono.setText(propietario.getTelefono());
+                binding.btPerfilCambiarContrasenia.setEnabled(true);
+                binding.btEditar.setEnabled(true);
             }
         });
-        perfilViewModel.getBmEstado().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+        perfilViewModel.getmModoVisualizar().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                binding.etTelefono.setEnabled(aBoolean);
-                binding.etEmail.setEnabled(aBoolean);
-                binding.etNombre.setEnabled(aBoolean);
-                binding.etApellido.setEnabled(aBoolean);
-                binding.etDni.setEnabled(aBoolean);
+                binding.btEditar.setText("Editar");
+                binding.etTelefono.setEnabled(false);
+                binding.etEmail.setEnabled(false);
+                binding.etNombre.setEnabled(false);
+                binding.etApellido.setEnabled(false);
+                binding.etDni.setEnabled(false);
+
+                binding.etTelefono.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_lock,0);
+                binding.etEmail.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_lock,0);
+                binding.etNombre.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_lock,0);
+                binding.etApellido.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_lock,0);
+                binding.etDni.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_lock,0);
             }
         });
         perfilViewModel.getmEditadoExitosamente().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
@@ -72,10 +83,22 @@ public class PerfilFragment extends Fragment {
                 binding.tvPerfilEditado.setVisibility(VISIBLE);
             }
         });
-        perfilViewModel.getBmTexto().observe(getViewLifecycleOwner(), new Observer<String>() {
+        perfilViewModel.getmModoEdicion().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
-            public void onChanged(String s) {
-                binding.btEditar.setText(s);
+            public void onChanged(Boolean aBoolean) {
+                binding.btEditar.setText("Guardar");
+                binding.etTelefono.setEnabled(true);
+                binding.etEmail.setEnabled(true);
+                binding.etNombre.setEnabled(true);
+                binding.etApellido.setEnabled(true);
+                binding.etDni.setEnabled(true);
+
+                binding.tvPerfilEditado.setVisibility(INVISIBLE);
+                binding.etTelefono.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
+                binding.etEmail.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
+                binding.etNombre.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
+                binding.etApellido.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
+                binding.etDni.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
             }
         });
         perfilViewModel.mostrarPerfil();
@@ -102,11 +125,18 @@ public class PerfilFragment extends Fragment {
         binding.btPerfilCambiarContrasenia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                binding.tvPerfilEditado.setVisibility(INVISIBLE);
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_main).navigate(R.id.cambiar_contrasenia_fragment);
             }
         });
 
         return root;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        perfilViewModel.limpiarMutables();
     }
 
     @Override

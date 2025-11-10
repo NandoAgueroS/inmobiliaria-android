@@ -20,10 +20,10 @@ import retrofit2.Response;
 public class PerfilViewModel extends AndroidViewModel {
 
     private MutableLiveData<Propietario> mPropietario = new MutableLiveData<>();
-    private MutableLiveData<Boolean> bmEstado= new MutableLiveData<>();
-    private MutableLiveData<String> bmTexto= new MutableLiveData<>();
+    private MutableLiveData<Boolean> mModoVisualizar= new MutableLiveData<>();
     private MutableLiveData<String> mMensaje= new MutableLiveData<>();
     private MutableLiveData<Boolean> mEditadoExitosamente = new MutableLiveData<>();
+    private MutableLiveData<Boolean> mModoEdicion= new MutableLiveData<>();
     private MutableLiveData<Boolean> mSesionInvalida = new MutableLiveData<>();
 
     public PerfilViewModel(@NonNull Application application) {
@@ -34,12 +34,8 @@ public class PerfilViewModel extends AndroidViewModel {
         return mPropietario;
     }
 
-    public LiveData<Boolean> getBmEstado() {
-        return bmEstado;
-    }
-
-    public LiveData<String> getBmTexto() {
-        return bmTexto;
+    public LiveData<Boolean> getmModoVisualizar() {
+        return mModoVisualizar;
     }
 
     public LiveData<String> getmMensaje() {
@@ -48,6 +44,9 @@ public class PerfilViewModel extends AndroidViewModel {
 
     public LiveData<Boolean> getmEditadoExitosamente() {
         return mEditadoExitosamente;
+    }
+    public LiveData<Boolean> getmModoEdicion() {
+        return mModoEdicion;
     }
 
     public LiveData<Boolean> getmSesionInvalida() {
@@ -84,8 +83,7 @@ public class PerfilViewModel extends AndroidViewModel {
 
     public void guardar(String botonText, String nombre, String apellido, String dni, String email, String telefono) {
         if (botonText.equals("Editar")){
-            bmEstado.setValue(true);
-            bmTexto.setValue("Guardar");
+            mModoEdicion.setValue(true);
         }else{
 
             Propietario propietarioActualizado = validarPropietario(nombre, apellido, dni, email, telefono);
@@ -99,9 +97,7 @@ public class PerfilViewModel extends AndroidViewModel {
                     public void onResponse(Call<Propietario> call, Response<Propietario> response) {
                         if (response.isSuccessful()) {
                             mEditadoExitosamente.setValue(true);
-                            Toast.makeText(getApplication(), "Actualizado correctamente", Toast.LENGTH_LONG).show();
-                            bmTexto.setValue("Editar");
-                            bmEstado.setValue(false);
+                            mModoVisualizar.setValue(false);
                         }else if (response.code() == 401){
                             sesionInvalida();
                         }else{
@@ -149,5 +145,11 @@ public class PerfilViewModel extends AndroidViewModel {
         propietario.setClave(null);
 
         return propietario;
+    }
+    public void limpiarMutables(){
+        mModoEdicion = new MutableLiveData<>();
+        mMensaje = new MutableLiveData<>();
+        mModoVisualizar = new MutableLiveData<>();
+        mEditadoExitosamente = new MutableLiveData<>();
     }
 }

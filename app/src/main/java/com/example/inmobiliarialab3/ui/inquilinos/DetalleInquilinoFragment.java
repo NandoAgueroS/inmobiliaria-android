@@ -59,5 +59,10 @@ public class DetalleInquilinoFragment extends Fragment {
          mViewModel.mostrarInquilino(getArguments());
          return binding.getRoot();
     }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 
 }

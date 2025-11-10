@@ -10,14 +10,16 @@
         android:id="@+id/etTelefono"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:layout_marginTop="36dp"
         android:background="@drawable/bg_text"
         android:backgroundTint="#3E000000"
+        android:drawableEnd="@drawable/ic_lock"
+        android:drawableTint="#FF6A6A"
         android:ems="10"
         android:enabled="false"
         android:hint="Teléfono"
         android:inputType="text"
-        android:paddingHorizontal="10dp"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
         android:shadowColor="#000000"
         android:textAlignment="textStart"
         android:textColor="#FFFFFF"
@@ -25,20 +27,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:layout_marginTop="32dp"
         android:background="@drawable/bg_text"
         android:backgroundTint="#3E000000"
+        android:drawableEnd="@drawable/ic_lock"
+        android:drawableTint="#FF6A6A"
         android:ems="10"
         android:enabled="false"
         android:hint="Email"
         android:inputType="text"
-        android:paddingHorizontal="10dp"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
         android:shadowColor="#000000"
         android:textAlignment="textStart"
         android:textColor="#FFFFFF"
@@ -46,20 +50,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etApellido" />
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
     <EditText
         android:id="@+id/etNombre"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:layout_marginTop="32dp"
         android:background="@drawable/bg_text"
         android:backgroundTint="#3E000000"
+        android:drawableEnd="@drawable/ic_lock"
+        android:drawableTint="#FF6A6A"
         android:ems="10"
         android:enabled="false"
         android:hint="Nombre"
         android:inputType="text"
-        android:paddingHorizontal="10dp"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
         android:shadowColor="#000000"
         android:textAlignment="textStart"
         android:textColor="#FFFFFF"
@@ -67,20 +73,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDni" />
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
     <EditText
         android:id="@+id/etDni"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:layout_marginTop="24dp"
         android:background="@drawable/bg_text"
         android:backgroundTint="#3E000000"
+        android:drawableEnd="@drawable/ic_lock"
+        android:drawableTint="#FF6A6A"
         android:ems="10"
         android:enabled="false"
         android:hint="DNI"
         android:inputType="text"
-        android:paddingHorizontal="10dp"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
         android:shadowColor="#000000"
         android:textAlignment="textStart"
         android:textColor="#FFFFFF"
@@ -88,20 +96,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilEditado" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <EditText
         android:id="@+id/etApellido"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:layout_marginTop="28dp"
         android:background="@drawable/bg_text"
         android:backgroundTint="#3E000000"
+        android:drawableEnd="@drawable/ic_lock"
+        android:drawableTint="#FF6A6A"
         android:ems="10"
         android:enabled="false"
         android:hint="Apellido"
         android:inputType="text"
-        android:paddingHorizontal="10dp"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
         android:shadowColor="#000000"
         android:textAlignment="textStart"
         android:textColor="#FFFFFF"
@@ -109,12 +119,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNombre" />
+        app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
     <Button
         android:id="@+id/btEditar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:text="Editar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -140,6 +151,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
+        android:enabled="false"
         android:text="Cambiar contraseña"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -158,4 +170,74 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Email"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etApellido" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="DNI"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPerfilEditado" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Nombre"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDni" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Apellido"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNombre" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Teléfono"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 </androidx.constraintlayout.widget.ConstraintLayout>

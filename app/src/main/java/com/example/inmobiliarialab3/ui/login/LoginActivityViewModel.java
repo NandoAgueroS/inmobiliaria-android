@@ -3,10 +3,12 @@ package com.example.inmobiliarialab3.ui.login;
 
 import static java.lang.StrictMath.sqrt;
 
+import android.Manifest;
 import android.app.Application;
 import android.content.Intent;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -16,12 +18,11 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.inmobiliarialab3.MainActivity;
-import com.example.inmobiliarialab3.model.Propietario;
 import com.example.inmobiliarialab3.request.ApiClient;
 
 import java.util.List;
@@ -135,7 +136,10 @@ public class LoginActivityViewModel extends AndroidViewModel {
             manager.unregisterListener(maneja);
     }
     public void llamar(){
-        Intent intent = new Intent(Intent.ACTION_DIAL);
+        if (ActivityCompat.checkSelfPermission(getApplication(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:123456789"));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getApplication().startActivity(intent);

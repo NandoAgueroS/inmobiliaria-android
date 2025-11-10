@@ -20,6 +20,8 @@
             android:backgroundTint="#3E000000"
             android:paddingHorizontal="15dp"
             android:paddingVertical="3dp"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
@@ -36,6 +38,8 @@
             android:backgroundTint="#3E000000"
             android:paddingHorizontal="15dp"
             android:paddingVertical="3dp"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.439"
             app:layout_constraintStart_toEndOf="@+id/textView8"
@@ -49,6 +53,8 @@
             android:backgroundTint="#3E000000"
             android:paddingHorizontal="15dp"
             android:paddingVertical="3dp"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.473"
             app:layout_constraintStart_toEndOf="@+id/textView5"
@@ -62,6 +68,8 @@
             android:layout_marginTop="16dp"
             android:text="Fecha"
             android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView8"
@@ -74,6 +82,8 @@
             android:layout_marginStart="4dp"
             android:text="Detalle"
             android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -85,6 +95,8 @@
             android:layout_marginTop="24dp"
             android:text="Importe"
             android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
     </androidx.constraintlayout.widget.ConstraintLayout>

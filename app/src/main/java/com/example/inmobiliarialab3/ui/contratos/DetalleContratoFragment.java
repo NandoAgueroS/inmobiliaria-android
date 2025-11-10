@@ -88,14 +88,18 @@ private FragmentDetalleContratoBinding binding;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        // TODO: Use the ViewModel
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        /*agrego esto porque si no, al tener una navegacion a otro fragment que se realiza cuando
+        el mutable cambia, luego de navegar a otro fragment, no me deja volver a este porque vuelve
+        a detectar un valor en el mutable y me navega otra vez
+         */
         mViewModel.limpiarMutableIdContrato();
     }
 }

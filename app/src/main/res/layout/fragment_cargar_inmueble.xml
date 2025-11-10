@@ -6,136 +6,228 @@
     android:layout_height="match_parent"
     tools:context=".ui.inmuebles.CargarInmuebleFragment" >
 
-    <EditText
-        android:id="@+id/etCargarLongitud"
-        android:layout_width="150dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="Longitud"
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="140dp"
+        android:text="Latitud"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toEndOf="@+id/etCargarTipo"
-        app:layout_constraintTop_toBottomOf="@+id/etCargarLatitud" />
-
-    <EditText
-        android:id="@+id/etCargarLatitud"
-        android:layout_width="150dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="Latitud"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toEndOf="@+id/etCargarUso"
         app:layout_constraintTop_toBottomOf="@+id/etCargarValor" />
 
-    <EditText
-        android:id="@+id/etCargarSuperficie"
-        android:layout_width="150dp"
-        android:layout_height="52dp"
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="Superficie"
+        android:layout_marginEnd="128dp"
+        android:text="Longitud"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toEndOf="@+id/etCargarAmbientes"
+        app:layout_constraintTop_toBottomOf="@+id/etCargarLatitud" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="140dp"
+        android:text="Valor $"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCargarMensaje" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="120dp"
+        android:text="Superficie"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etCargarLongitud" />
 
     <EditText
-        android:id="@+id/etCargarValor"
-        android:layout_width="150dp"
+        android:id="@+id/etCargarLongitud"
+        android:layout_width="180dp"
         android:layout_height="52dp"
-        android:layout_marginTop="60dp"
+        android:background="@drawable/bg_text"
+        android:backgroundTint="#3E000000"
+        android:ems="10"
+        android:hint="Longitud"
+        android:inputType="text"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toEndOf="@+id/etCargarTipo"
+        app:layout_constraintTop_toBottomOf="@+id/textView27" />
+
+    <EditText
+        android:id="@+id/etCargarTipo"
+        android:layout_width="180dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/bg_text"
+        android:backgroundTint="#3E000000"
+        android:ems="10"
+        android:hint="Tipo"
+        android:inputType="text"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+    <EditText
+        android:id="@+id/etCargarLatitud"
+        android:layout_width="180dp"
+        android:layout_height="52dp"
+        android:background="@drawable/bg_text"
+        android:backgroundTint="#3E000000"
+        android:ems="10"
+        android:hint="Latitud"
+        android:inputType="text"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toEndOf="@+id/etCargarUso"
+        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+
+    <EditText
+        android:id="@+id/etCargarUso"
+        android:layout_width="180dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/bg_text"
+        android:backgroundTint="#3E000000"
+        android:ems="10"
+        android:hint="Uso"
+        android:inputType="text"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/etCargarSuperficie"
+        android:layout_width="180dp"
+        android:layout_height="52dp"
+        android:background="@drawable/bg_text"
+        android:backgroundTint="#3E000000"
+        android:ems="10"
+        android:hint="Superficie"
+        android:inputType="text"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toEndOf="@+id/etCargarAmbientes"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+    <EditText
+        android:id="@+id/etCargarAmbientes"
+        android:layout_width="180dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/bg_text"
+        android:backgroundTint="#3E000000"
+        android:ems="10"
+        android:hint="Ambientes"
+        android:inputType="text"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+    <EditText
+        android:id="@+id/etCargarValor"
+        android:layout_width="180dp"
+        android:layout_height="52dp"
+        android:background="@drawable/bg_text"
+        android:backgroundTint="#3E000000"
         android:ems="10"
         android:hint="Valor"
         android:inputType="text"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toEndOf="@+id/etCargarDireccion"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
     <EditText
         android:id="@+id/etCargarDireccion"
-        android:layout_width="150dp"
+        android:layout_width="180dp"
         android:layout_height="52dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/bg_text"
+        android:backgroundTint="#3E000000"
         android:ems="10"
         android:hint="Dirección"
         android:inputType="text"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
         android:id="@+id/btnCargarImagen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Cargar Imágen"
+        android:layout_marginTop="32dp"
+        android:text="Cargar imágen"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.937"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cbCargarDisponible" />
-
-    <ImageView
-        android:id="@+id/ivCargarImagen"
-        android:layout_width="214dp"
-        android:layout_height="239dp"
-        android:src="@drawable/ic_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCargarImagen" />
-
-    <EditText
-        android:id="@+id/etCargarAmbientes"
-        android:layout_width="150dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="Ambientes"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCargarTipo" />
-
-    <EditText
-        android:id="@+id/etCargarTipo"
-        android:layout_width="150dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="Tipo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCargarUso" />
-
-    <EditText
-        android:id="@+id/etCargarUso"
-        android:layout_width="150dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="Uso"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCargarDireccion" />
+        app:layout_constraintTop_toBottomOf="@+id/etCargarSuperficie" />
 
     <CheckBox
         android:id="@+id/cbCargarDisponible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="28dp"
         android:text="Disponible"
+        android:textColor="#FFFFFF"
         app:checkedState="unchecked"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintEnd_toStartOf="@+id/btnCargarImagen"
+        app:layout_constraintHorizontal_bias="0.339"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCargarMensaje" />
+        app:layout_constraintTop_toBottomOf="@+id/etCargarAmbientes" />
+
+    <ImageView
+        android:id="@+id/ivCargarImagen"
+        android:layout_width="214dp"
+        android:layout_height="239dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCargarImagen" />
 
     <Button
         android:id="@+id/btCargarInmueble"
@@ -144,19 +236,73 @@
         android:text="Guardar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivCargarImagen" />
+        app:layout_constraintTop_toBottomOf="@+id/ivCargarImagen"
+        app:layout_constraintVertical_bias="0.216" />
 
     <TextView
         android:id="@+id/tvCargarMensaje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textColor="#FF0000"
+        android:layout_marginTop="4dp"
+        android:background="#FF0000"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dirección"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textView29"
+        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCargarMensaje" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Tipo"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textView27"
+        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCargarUso" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Uso"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textView28"
+        app:layout_constraintHorizontal_bias="0.158"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCargarDireccion" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Ambientes"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textView26"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCargarTipo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
